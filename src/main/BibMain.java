@@ -76,11 +76,7 @@ public class BibMain {
 								break;
 							}
 
-						
-
-					 
-
-					     if (broj == 0 ) {
+					      if (broj == 0 ) {
 							System.out.println("Iznajmili ste " + knjiga.getIme());
 					     }
 					     
