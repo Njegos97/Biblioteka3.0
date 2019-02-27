@@ -17,7 +17,7 @@ public class ConnectionManager {
 		
 	}
 	
-	private static ConnectionManager getInstance() {
+	public static ConnectionManager getInstance() {
 		if(instance == null) {
 			instance = new ConnectionManager();
 		}
