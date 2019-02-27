@@ -2,6 +2,7 @@ package com.njegos.entiteti;
 
 public class Knjiga {
 	private String ime;
+	private String imeAutora;
 	private int id;
 	private boolean iznajmljena;
 	String imeClana;
@@ -23,6 +24,10 @@ public class Knjiga {
 	public String getIme() {
 		return ime;
 	}
+	
+	public String getImeAutora() {
+		return imeAutora;
+	}
 
 	public int getId() {
 		return id;
@@ -39,6 +44,10 @@ public class Knjiga {
 	//setter
 	public void setIme(String ime) {
 		this.ime = ime;
+	}
+	
+	public void setImeAutora(String imeAutora) {
+		this.imeAutora = imeAutora;
 	}
 
 	public void setId(int id) {
