@@ -1,13 +1,20 @@
 package com.njegos.main;
 
+import com.njegos.dao.ClanoviDao;
+import com.njegos.dao.DodajClana;
+import com.njegos.dao.DodajKnjigu;
+import com.njegos.dao.IzbrisiKnjigu;
+import com.njegos.dao.KnjigeDao;
 import com.njegos.entiteti.Biblioteka;
 import com.njegos.entiteti.Clan;
 import com.njegos.entiteti.Knjiga;
 import com.njegos.logika.BibliotekaLogika;
 import com.njegos.logika.Unos;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class BibliotekaMeni {
 
@@ -20,6 +27,20 @@ public class BibliotekaMeni {
 		int id = -1;
 		int idKnjige = -1;
 		int unos = -1;
+		
+		ClanoviDao cd = new ClanoviDao();
+		Map<Integer, Clan> clanovi = new LinkedHashMap<>();
+		clanovi = cd.getClanovi();
+		
+		KnjigeDao  kd = new KnjigeDao();
+		Map<Integer, Knjiga> knjige = new TreeMap<>();
+		knjige = kd.getKnjige();
+		
+		
+		biblioteka.setClanovi(cd.getClanovi());
+		biblioteka.setKnjige(kd.getKnjige());
+		System.out.println(biblioteka.getClanovi().entrySet());
+		System.out.println(biblioteka.getKnjige().entrySet());
 
 		// biblioteka.setRadi(true);
 
@@ -44,6 +65,7 @@ public class BibliotekaMeni {
 				clan.setPrezime(prezime);
 				BibliotekaLogika.registracija(biblioteka.getClanovi(), clan);
 				System.out.println("Vas id je " + clan.getId());
+				DodajClana.dodajClana(ime, prezime, 0);
 				input.nextLine();
 				break;
 
@@ -128,16 +150,19 @@ public class BibliotekaMeni {
 					switch (administratorskeOpcije) {
 					case d:
 						knjiga = new Knjiga();
-
+                        System.out.println("Naziv knjige");
 					    ime = input.nextLine();
 						knjiga.setIme(ime);
+						System.out.println("Naziv autora");
+						String imeAutora = input.nextLine();
 						BibliotekaLogika.DodajKnjigu(biblioteka.getKnjige(), knjiga);
+						DodajKnjigu.doadajKnjigu(ime, imeAutora, false);
 						System.out.println("Dodali ste knjigu " + ime);
 
 						break;
 					case i:
 						System.out.println("unesi id knjige koju zelis izbrisati: ");
-
+                        
 						for (Map.Entry<Integer, Knjiga> entry : biblioteka.getKnjige().entrySet()) {
 							System.out.print(entry.getKey() + " ");
 							knjiga = entry.getValue();
@@ -146,6 +171,7 @@ public class BibliotekaMeni {
 						}
 
 						id = Unos.unosIntegera();
+						IzbrisiKnjigu.izbrisiKnjigu(id);
 						try {
 							knjiga = BibliotekaLogika.izbrisiKnjigu(biblioteka.getKnjige(), id);
 

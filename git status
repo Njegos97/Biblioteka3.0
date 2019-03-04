@@ -1,0 +1,65 @@
+[33mcommit c446f991bae0f05aee95f9f64bf41332a89f4375[m[33m ([m[1;36mHEAD -> [m[1;32mwork2[m[33m, [m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Merge: f556f6d e893932
+Author: Njegos97 <njegoss997@gmail.com>
+Date:   Thu Feb 28 10:25:16 2019 +0100
+
+    Merge pull request #2 from Njegos97/work
+    
+    Work
+
+[33mcommit e893932d163e67c19f087cb54f84a38dd1a191fe[m[33m ([m[1;31morigin/work[m[33m)[m
+Author: njegoss997@gmail.com <njegoss997@gmail.com>
+Date:   Thu Feb 28 10:23:57 2019 +0100
+
+    Implementovao klase DodajKnjigu, IzbrisiClana, IzbrisiKnjigu u com.njegos.dao
+
+[33mcommit 5e40b03d207fa43d1201802a7b50e2ebf1dd3b30[m
+Author: njegoss997@gmail.com <njegoss997@gmail.com>
+Date:   Wed Feb 27 16:28:34 2019 +0100
+
+    implementovao metodu dodajClana u com.njegos.dao
+
+[33mcommit f44d74e3dec3fab31f5faf2856821c6ba0ab10b9[m
+Author: njegoss997@gmail.com <njegoss997@gmail.com>
+Date:   Wed Feb 27 15:32:01 2019 +0100
+
+    Implementovao ConnectionManager klasu com.njegos.dao
+
+[33mcommit f556f6d9b847fcde04a52e5547324d6dc98b04e4[m
+Merge: 474a74d bad3e79
+Author: Njegos97 <njegoss997@gmail.com>
+Date:   Wed Feb 27 10:10:23 2019 +0100
+
+    Merge pull request #1 from Njegos97/work
+    
+    Work
+
+[33mcommit bad3e79c09c8f9e15391671ac25d04345477669a[m
+Author: njegoss997@gmail.com <njegoss997@gmail.com>
+Date:   Wed Feb 27 10:09:07 2019 +0100
+
+    implementovao meni
+
+[33mcommit e1d01290cfac39a6e0d16b3cd64fa0f4b7c8dae0[m
+Author: njegoss997@gmail.com <njegoss997@gmail.com>
+Date:   Fri Feb 22 11:18:20 2019 +0100
+
+    Kreirao 3 enuma za meni, AdministratorskeOpcije, LogInOpcije, MeniOpcije
+
+[33mcommit 285ca7e9def2a7ec551c51fd5f75a3a698ad818b[m
+Author: njegoss997@gmail.com <njegoss997@gmail.com>
+Date:   Fri Feb 22 09:12:59 2019 +0100
+
+    dodao data fild imeAutora u paketu com.njegos.entiteti u klasi Knjiga
+
+[33mcommit 474a74d3bfe2f4bd7b6044fb964b7adf5df214ce[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: njegoss997@gmail.com <njegoss997@gmail.com>
+Date:   Fri Feb 22 09:04:02 2019 +0100
+
+    klonirao Biblioteka 2.0, kreirao pakete za rad na Biblioteka3.0
+
+[33mcommit a58e3139093f5f5238facd3e53f3a70412ecbe11[m
+Author: njegoss997@gmail.com <njegoss997@gmail.com>
+Date:   Thu Feb 21 12:58:26 2019 +0100
+
+    first commit
