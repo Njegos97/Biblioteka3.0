@@ -3,8 +3,12 @@ package com.njegos.main;
 import com.njegos.dao.ClanoviDao;
 import com.njegos.dao.DodajClana;
 import com.njegos.dao.DodajKnjigu;
+import com.njegos.dao.IzbrisiClana;
 import com.njegos.dao.IzbrisiKnjigu;
+import com.njegos.dao.IznajmiKnjigu;
+import com.njegos.dao.IznajmljeneKnjige;
 import com.njegos.dao.KnjigeDao;
+import com.njegos.dao.VratiKnjigu;
 import com.njegos.entiteti.Biblioteka;
 import com.njegos.entiteti.Clan;
 import com.njegos.entiteti.Knjiga;
@@ -28,34 +32,33 @@ public class BibliotekaMeni {
 		int idKnjige = -1;
 		int unos = -1;
 		
-		ClanoviDao cd = new ClanoviDao();
-		Map<Integer, Clan> clanovi = new LinkedHashMap<>();
-		clanovi = cd.getClanovi();
 		
+		
+		ClanoviDao cd = new ClanoviDao();
 		KnjigeDao  kd = new KnjigeDao();
-		Map<Integer, Knjiga> knjige = new TreeMap<>();
-		knjige = kd.getKnjige();
+		
 		
 		
 		biblioteka.setClanovi(cd.getClanovi());
 		biblioteka.setKnjige(kd.getKnjige());
-		System.out.println(biblioteka.getClanovi().entrySet());
-		System.out.println(biblioteka.getKnjige().entrySet());
+		
+		
+		IznajmljeneKnjige.iznajmljeneKnjige(biblioteka);
 
 		// biblioteka.setRadi(true);
 
-		MeniOpcije meniOpcije = MeniOpcije.s;
-		LogInOpcije logInOpcije = LogInOpcije.s;
+		MeniOpcije meniOpcije = MeniOpcije.START;
+		LogInOpcije logInOpcije = LogInOpcije.START;
 		AdministratorskeOpcije administratorskeOpcije = AdministratorskeOpcije.START;
 
-		while (meniOpcije != meniOpcije.i) {
+		while (meniOpcije != meniOpcije.IZLAZ) {
 
 			meniOpcije();
 			meniOpcije = MeniOpcije.values()[Integer.parseInt(input.nextLine().trim())];
 
 			switch (meniOpcije) {
 			
-			case r:
+			case REGISTRACIJA:
 				clan = new Clan();
 				System.out.println("Unesite ime");
 				String ime = input.next();
@@ -69,7 +72,7 @@ public class BibliotekaMeni {
 				input.nextLine();
 				break;
 
-			case l:
+			case LOGIN:
 				System.out.println("unesite Clanski Broj");
 				id = Unos.unosIntegera();
 
@@ -83,17 +86,17 @@ public class BibliotekaMeni {
 					System.out.println("Nepostoji clan sa tim id-om");
 				}
 
-				while (logInOpcije != LogInOpcije.n) {
+				while (logInOpcije != LogInOpcije.NAZAD) {
 					logInOpcije();
 					logInOpcije = LogInOpcije.values()[Integer.parseInt(input.nextLine().trim())];
 
 					switch (logInOpcije) {
 
-					case i:
+					case IZNAJMIKNJIGU:
 						for(Map.Entry<Integer, Knjiga> entry : biblioteka.getKnjige().entrySet()) {
 					    	System.out.print(entry.getKey() + " ");
 					        knjiga = entry.getValue();
-					    	System.out.println(knjiga.getIme());
+					        System.out.println(knjiga.getIme());
 					    	
 					    }
 					    System.out.println("unesite id knjige koju zelite da iznajmite");
@@ -101,7 +104,7 @@ public class BibliotekaMeni {
 						knjiga = BibliotekaLogika.pronadjiKnjigu(biblioteka.getKnjige(), id);
 						int broj = -1;
 						try {
-						 broj= BibliotekaLogika.IznajmiKnjigu(clan, knjiga, id);
+						 broj = BibliotekaLogika.IznajmiKnjigu(clan, knjiga, id);
 						}catch(NullPointerException e) {
 							System.out.println("Ups");
 							break;
@@ -109,6 +112,7 @@ public class BibliotekaMeni {
 
 				      if (broj == 0 ) {
 						System.out.println("Iznajmili ste " + knjiga.getIme());
+						 IznajmiKnjigu.iznajmiKnjigu( clan.getId(), id);
 				     }
 				     
 				     
@@ -121,7 +125,7 @@ public class BibliotekaMeni {
 
 					break;
                     
-					case v:
+					case VRATIKNJIGU:
 						 for(Map.Entry<Integer, Knjiga> entry : clan.getMojeKnjige().entrySet()) {
 						    	System.out.print(entry.getKey() + " ");
 						        knjiga = entry.getValue();
@@ -136,19 +140,20 @@ public class BibliotekaMeni {
 						
 												
 						System.out.println("vratili ste " + knjiga.getIme());
+						VratiKnjigu.vratiKnjigu(id);
 						break;
-					case n:
+					case NAZAD:
 						
 					}
 				}
 
-			case a:
-				while (administratorskeOpcije != AdministratorskeOpcije.n) {
+			case ADMINISTRATORSKEOPCIJE:
+				while (administratorskeOpcije != AdministratorskeOpcije.NAZAD) {
 					administratorskeOpcije();
 					administratorskeOpcije = AdministratorskeOpcije.values()[Integer.parseInt(input.nextLine().trim()) - 1];
 
 					switch (administratorskeOpcije) {
-					case d:
+					case DODAJKNJIGU:
 						knjiga = new Knjiga();
                         System.out.println("Naziv knjige");
 					    ime = input.nextLine();
@@ -160,7 +165,7 @@ public class BibliotekaMeni {
 						System.out.println("Dodali ste knjigu " + ime);
 
 						break;
-					case i:
+					case IZBRISIKNJIGU:
 						System.out.println("unesi id knjige koju zelis izbrisati: ");
                         
 						for (Map.Entry<Integer, Knjiga> entry : biblioteka.getKnjige().entrySet()) {
@@ -185,12 +190,13 @@ public class BibliotekaMeni {
 							System.out.println("Usp");
 							break;
 						}
-					case c:
+					case IZBRISICLANA:
 						System.out.println("Unesi id clana kojeg zelis izbrisati: ");
 
 						System.out.println(biblioteka.getClanovi().entrySet());
 
 						id = Unos.unosIntegera();
+						IzbrisiClana.izbrisiClana(id);
 						try {
 							clan = BibliotekaLogika.izbrisiClana(biblioteka.getClanovi(), id);
 
@@ -205,7 +211,7 @@ public class BibliotekaMeni {
 							System.out.println("ups");
 							break;
 						}
-					case p:
+					case STANJECLANA:
 						System.out.println("Upisite id clana od kojeg zelite vidjeti iznajmljene knjige");
 						id = Unos.unosIntegera();
 						try {
@@ -227,7 +233,7 @@ public class BibliotekaMeni {
 							System.out.println("pogresan id");
 							break;
 						}
-					case s:
+					case STANJEKNJIGE:
 						for (Map.Entry<Integer, Knjiga> entry : biblioteka.getKnjige().entrySet()) {
 							System.out.print(entry.getKey() + " ");
 							knjiga = entry.getValue();
@@ -251,12 +257,12 @@ public class BibliotekaMeni {
 							System.out.println("Pogresan id");
 							break;
 						}
-					case n:
+					case NAZAD:
 						 
 					}
 					
 				}
-			case i:
+			case IZLAZ:
            
 			}
 
