@@ -2,8 +2,8 @@ package com.njegos.main;
 
 public enum AdministratorskeOpcije {
    
-	d("Dodaj Knjigu"), i("Izbrisi Knjigu"), c("Izbrisi Clana"), p("Pogledaj knjige koje je clan iznajmio"),
-	s("Stanje Knjige"), n("Nazad"), START("Start");
+ DODAJKNJIGU("Dodaj Knjigu"), IZBRISIKNJIGU("Izbrisi Knjigu"), IZBRISICLANA("Izbrisi Clana"), STANJECLANA("Pogledaj knjige koje je clan iznajmio"),
+	STANJEKNJIGE("Stanje Knjige"), NAZAD("Nazad"), START("Start");
 	
 	
     private String opcija;

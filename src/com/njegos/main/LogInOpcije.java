@@ -10,7 +10,7 @@ import com.njegos.logika.Unos;
 
 public enum LogInOpcije {
 	
-	s("Start"), i("Iznajmi Knjigu"), v("Vrati Knjigu"), n("Nazad");
+	START("Start"), IZNAJMIKNJIGU("Iznajmi Knjigu"), VRATIKNJIGU("Vrati Knjigu"), NAZAD("Nazad");
 	
 	Scanner input = new Scanner(System.in);
 	

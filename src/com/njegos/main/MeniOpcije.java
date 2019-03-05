@@ -9,7 +9,7 @@ import com.njegos.logika.Unos;
 public enum MeniOpcije {
    
 	
-   s("Start"), r("Registracija"), l("Log In"), a("Administratorske Opcije"), i("Izlaz");
+   START("Start"), REGISTRACIJA("Registracija"), LOGIN("Log In"), ADMINISTRATORSKEOPCIJE("Administratorske Opcije"), IZLAZ("Izlaz");
 
 	Scanner input = new Scanner(System.in);
 	private String opcija;

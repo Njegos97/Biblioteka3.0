@@ -11,7 +11,7 @@ public class Clan {
 	private String ime;
 	private String prezime;
 	private int id; 
-    private Map<Integer, Knjiga> mojeKnjige = new LinkedHashMap<>();
+	private Map<Integer, Knjiga> mojeKnjige = new LinkedHashMap<>();
 	
 	//Konstruktor
 	public Clan() {

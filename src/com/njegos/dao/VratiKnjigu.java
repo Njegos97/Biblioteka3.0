@@ -2,23 +2,23 @@ package com.njegos.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class IzbrisiKnjigu {
+public class VratiKnjigu {
 
-	
-	public static void izbrisiKnjigu(int id) {
+	public static void vratiKnjigu(int id) {
 		Connection connection = ConnectionManager.getInstance().getConnection();
-		String sql = "DELETE FROM biblioteka.knjige where (id = ?)";
+		String sql = "UPDATE  biblioteka.knjige SET idClana = null, iznajmljena = false  WHERE id = ?";
 		
-		try (PreparedStatement ps = connection.prepareStatement(sql)){
+       try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			
+			
 			ps.setInt(1, id);
 			ps.executeUpdate();
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+	
 }
